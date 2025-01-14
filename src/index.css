@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body, #root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100dvh;
+  width: 100dvw;
+}
+
+.jersey-15-regular {
+  font-family: "Jersey 15", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.micro-5-regular {
+  font-family: "Micro 5", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
