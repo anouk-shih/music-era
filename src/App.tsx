@@ -27,9 +27,7 @@ function App() {
 
   const handleBack = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        handleSetStep("back");
-      }
+      if (e.key === "ArrowLeft") handleSetStep("back");
     },
     [handleSetStep]
   );
