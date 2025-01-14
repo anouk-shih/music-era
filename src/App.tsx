@@ -13,7 +13,7 @@ import StepTape from './components/StepTape';
 import StepTapeEnd from './components/StepTapeEnd';
 
 function App() {
-  const [step, setStep] = useState(9);
+  const [step, setStep] = useState(0);
   const handleSetStep = useCallback(
     (action: "back" | "next") => {
       if (action === "back" && step > 0) {
