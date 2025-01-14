@@ -1,21 +1,28 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - "main" 
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+      - main
+    paths:
+      - 'dist/**'  # Trigger when changes happen in the dist folder
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - id: build-publish
-      uses: bitovi/github-actions-react-to-github-pages@v1.2.4
-      with:
-        path: dist # change to your build folder
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies (if needed, for example for build tools like npm/yarn)
+        run: |
+          npm install # or yarn install, depending on your package manager
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # The branch you want to deploy to
+          folder: dist      # The folder containing your build artifacts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # This is automatically provided by GitHub Actions
