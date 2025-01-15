@@ -1,26 +1,16 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface StepCoverProps {
-  handleSetStep: (action: "back" | "next") => void;
+  handleNext: (e: KeyboardEvent) => void;
 }
 
-const StepCover = ({ handleSetStep }: StepCoverProps) => {
-  const handleEnter = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
-        handleSetStep("next");
-      }
-    },
-    [handleSetStep]
-  );
-
+const StepCover = ({ handleNext }: StepCoverProps) => {
   useEffect(() => {
-    window.addEventListener("keydown", handleEnter);
-
+    window.addEventListener("keydown", handleNext);
     return () => {
-      window.removeEventListener("keydown", handleEnter);
+      window.removeEventListener("keydown", handleNext);
     };
-  }, [handleEnter]);
+  }, [handleNext]);
 
   return (
     <>

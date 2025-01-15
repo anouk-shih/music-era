@@ -2,13 +2,27 @@ import { useCallback, useEffect, useState } from 'react';
 
 import CDImage from '../assets/cd.webp';
 import FoxImage from '../assets/fox.png';
+import RPGSound from '../assets/rpg-sound.mp3';
 
-const StepCDEnd = () => {
+interface StepCDEndProps {
+  handleNext: (e: KeyboardEvent) => void;
+}
+
+const StepCDEnd = ({ handleNext }: StepCDEndProps) => {
   const [isPlaying, setIsPlaying] = useState(0);
 
-  const handlePlay = (step: number) => {
-    setIsPlaying(step);
-  };
+  const handlePlaySound = useCallback(() => {
+    const audio = new Audio(RPGSound);
+    audio.play();
+  }, []);
+
+  const handlePlay = useCallback(
+    (step: number) => {
+      setIsPlaying(step);
+      handlePlaySound();
+    },
+    [handlePlaySound]
+  );
 
   const handleStart = useCallback(() => {
     handlePlay(1);
@@ -18,7 +32,7 @@ const StepCDEnd = () => {
     setTimeout(() => {
       handlePlay(3);
     }, 2000);
-  }, []);
+  }, [handlePlay]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,39 +44,46 @@ const StepCDEnd = () => {
     };
   }, [handleStart]);
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleNext);
+    return () => {
+      window.removeEventListener("keydown", handleNext);
+    };
+  }, [handleNext]);
+
   return (
     <div className="relative grid w-full h-full backdrop-blur-md place-items-center">
       <img
         src={FoxImage}
         alt="fox"
-        className={`w-[400px] h-auto object-cover absolute top-[0%] left-[50%] z-10 transform-gpu -translate-x-1/2 ${
+        className={`w-[300px] h-auto object-cover absolute top-[0%] left-[50%] z-10 transform-gpu -translate-x-1/2 ${
           isPlaying === 1
-            ? "translate-y-[75%]"
+            ? "translate-y-[73%]"
             : isPlaying === 2
-            ? "translate-y-[147%]"
+            ? "translate-y-[142%]"
             : isPlaying === 3
-            ? "translate-y-[217%]"
+            ? "translate-y-[212%]"
             : ""
         }`}
       />
       <img
         src={CDImage}
         alt="cd"
-        className={`w-[220px] h-auto object-cover absolute top-[30%] left-[50%] transform -translate-x-1/2 ${
+        className={`w-[160px] h-auto object-cover absolute top-[30%] left-[50%] transform -translate-x-1/2 ${
           isPlaying > 1 ? "hidden" : ""
         }`}
       />
       <img
         src={CDImage}
         alt="cd"
-        className={`w-[220px] h-auto object-cover absolute top-[52%] left-[50%] transform -translate-x-1/2 ${
+        className={`w-[160px] h-auto object-cover absolute top-[52%] left-[50%] transform -translate-x-1/2 ${
           isPlaying > 2 ? "hidden" : ""
         }`}
       />
       <img
         src={CDImage}
         alt="cd"
-        className="w-[220px] h-auto object-cover absolute top-[74%] left-[50%] transform -translate-x-1/2"
+        className="w-[160px] h-auto object-cover absolute top-[74%] left-[50%] transform -translate-x-1/2"
       />
       <p className="absolute text-4xl text-center text-white micro-5-regular bottom-10">
         {"<-"}

@@ -1,14 +1,26 @@
+import { useEffect } from 'react';
+
 import RadioImage from '../assets/radio.png';
 import TapeImage from '../assets/tape.png';
 
-const StepTape = () => {
+interface StepTapeProps {
+  handleNext: (e: KeyboardEvent) => void;
+}
+
+const StepTape = ({ handleNext }: StepTapeProps) => {
+  useEffect(() => {
+    window.addEventListener("keydown", handleNext);
+    return () => {
+      window.removeEventListener("keydown", handleNext);
+    };
+  }, [handleNext]);
   return (
     <div className="relative grid w-full h-full pt-24 align-bottom backdrop-blur-md justify-items-center">
-      <img src={RadioImage} alt="radio" className="w-[800px] h-auto object-cover absolute bottom-[10%] right-[0%]" />
+      <img src={RadioImage} alt="radio" className="w-[600px] h-auto object-cover absolute bottom-[10%] right-[0%]" />
       <img
         src={TapeImage}
         alt="tape"
-        className="w-[400px] h-auto object-cover animate__animated animate__fadeInDownBig animate__slow absolute bottom-[15%] right-[14%]"
+        className="w-[300px] h-auto object-cover animate__animated animate__fadeInDownBig animate__slow absolute bottom-[15%] right-[10%]"
       />
       <iframe
         src="https://www.youtube.com/embed/sGUw3c1piSo?si=B8vjkn9CozkRCCJi&start=215&end=255&autoplay=1"
@@ -17,13 +29,14 @@ const StepTape = () => {
         autoFocus
         referrerPolicy="strict-origin-when-cross-origin"
         className="animate__animated animate__fadeIn animate__delay-2s"
-        width="1200"
-        height="600"
+        width="1000"
+        height="500"
         style={{
           position: "absolute",
           top: "30%",
           left: "50%",
           transform: "translate(-50%, -55%)",
+          zIndex: 10,
         }}></iframe>
       <p className="absolute text-4xl text-center text-white micro-5-regular bottom-10">
         {"<-"}

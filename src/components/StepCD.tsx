@@ -1,18 +1,30 @@
+import { useEffect } from 'react';
+
 import CDPlayerImage from '../assets/cd-player.png';
 import CDImage from '../assets/cd.webp';
 
-const StepCD = () => {
+interface StepCDProps {
+  handleNext: (e: KeyboardEvent) => void;
+}
+
+const StepCD = ({ handleNext }: StepCDProps) => {
+  useEffect(() => {
+    window.addEventListener("keydown", handleNext);
+    return () => {
+      window.removeEventListener("keydown", handleNext);
+    };
+  }, [handleNext]);
   return (
     <div className="relative grid w-full h-full backdrop-blur-md place-items-center">
       <img
         src={CDPlayerImage}
         alt="cd player"
-        className="w-[600px] h-auto object-cover animate__animated animate__fadeIn absolute bottom-0 right-[10%] z-10"
+        className="w-[500px] h-auto object-cover animate__animated animate__fadeIn absolute bottom-[-10%] right-[0%] z-10"
       />
       <img
         src={CDImage}
         alt="cd"
-        className="w-[550px] h-auto object-cover animate__animated animate__fadeInDownBig animate__slow absolute bottom-[13%] right-[10%]"
+        className="w-[450px] h-auto object-cover animate__animated animate__fadeInDownBig animate__slow absolute bottom-[5%] right-[0%]"
       />
 
       <iframe
@@ -22,13 +34,14 @@ const StepCD = () => {
         autoFocus
         referrerPolicy="strict-origin-when-cross-origin"
         className="animate__animated animate__fadeIn animate__delay-2s"
-        width="1200"
-        height="600"
+        width="1000"
+        height="500"
         style={{
           position: "absolute",
           top: "30%",
           left: "50%",
           transform: "translate(-50%, -55%)",
+          zIndex: 10,
         }}></iframe>
       <p className="absolute text-4xl text-center text-white micro-5-regular bottom-10">
         {"<-"}

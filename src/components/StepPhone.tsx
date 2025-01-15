@@ -3,9 +3,14 @@ import { useCallback, useEffect, useState } from 'react';
 import PhoneImage from '../assets/google-pixel.png';
 import PhoneCallMusic from '../assets/phone-call.m4a';
 import RikaRecord from '../assets/Rika_YearEndParty.m4a';
+import { KEY_NEXT } from '../constant';
 
-const StepPhone = () => {
-  const [isShaking, setIsShaking] = useState(false);
+type StepPhoneProps = {
+  handleNext: (e: KeyboardEvent) => void;
+};
+
+const StepPhone = ({ handleNext }: StepPhoneProps) => {
+  const [step, setStep] = useState(0);
 
   const handlePlayPhoneCallMusic = () => {
     const audio = new Audio(PhoneCallMusic);
@@ -17,26 +22,33 @@ const StepPhone = () => {
     audio.play();
   };
 
-  const handleShake = useCallback(
+  // step 1: shake phone and play phone call music
+  // step 2: undo shake phone and play rika record
+  // step 3: next
+
+  const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "ArrowDown" && !isShaking) {
-        setIsShaking(true);
+      if (KEY_NEXT.includes(e.key) && step === 0) {
+        setStep(1);
         handlePlayPhoneCallMusic();
       }
-      if (e.key === "ArrowDown" && isShaking) {
-        setIsShaking(false);
+      if (KEY_NEXT.includes(e.key) && step === 1) {
+        setStep(2);
         handlePlayRikaRecord();
       }
+      if (KEY_NEXT.includes(e.key) && step === 2) {
+        handleNext(e);
+      }
     },
-    [isShaking]
+    [step, handleNext]
   );
 
   useEffect(() => {
-    window.addEventListener("keydown", handleShake);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener("keydown", handleShake);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleShake]);
+  }, [handleKeyDown]);
 
   return (
     <div className="relative grid w-full h-full backdrop-blur-md place-items-center">
@@ -44,7 +56,7 @@ const StepPhone = () => {
         src={PhoneImage}
         alt="phone"
         className={`w-[1000px] h-auto object-cover ${
-          isShaking ? "animate__animated animate__shakeX animate__infinite" : ""
+          step === 1 ? "animate__animated animate__shakeX animate__infinite" : ""
         }`}
       />
       <p className="absolute text-4xl text-center text-white micro-5-regular bottom-10">

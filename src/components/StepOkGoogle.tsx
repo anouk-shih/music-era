@@ -1,22 +1,45 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import HeyMusic from '../assets/KK_Hey.m4a';
 import OkGoogleImage from '../assets/okGoogle.png';
+import { KEY_NEXT } from '../constant';
 
-const StepOkGoogle = () => {
-  const handlePlayHey = (e: KeyboardEvent) => {
-    if (e.key === "ArrowDown") {
-      const audio = new Audio(HeyMusic);
-      audio.play();
-    }
+type StepOkGoogleProps = {
+  handleNext: (e: KeyboardEvent) => void;
+};
+
+const StepOkGoogle = ({ handleNext }: StepOkGoogleProps) => {
+  const [step, setStep] = useState(0);
+
+  const handlePlayHey = () => {
+    const audio = new Audio(HeyMusic);
+    audio.play();
   };
 
+  // step 1: play hey
+  // step 2: next
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (KEY_NEXT.includes(e.key)) {
+        if (step === 0) {
+          setStep(1);
+          handlePlayHey();
+        }
+        if (step === 1) {
+          handleNext(e);
+        }
+      }
+    },
+    [handleNext, step]
+  );
+
   useEffect(() => {
-    window.addEventListener("keydown", handlePlayHey);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener("keydown", handlePlayHey);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [handleKeyDown]);
 
   return (
     <div className="relative grid w-full h-full backdrop-blur-md place-items-center">
