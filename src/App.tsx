@@ -1,18 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 
-import BackgroundImage from './assets/neon-bg.jpg';
-import StepAPT from './components/StepAPT';
-import StepCD from './components/StepCD';
-import StepCDEnd from './components/StepCDEnd';
-import StepCover from './components/StepCover';
-import StepEnd from './components/StepEnd';
-import StepOkGoogle from './components/StepOkGoogle';
-import StepPhone from './components/StepPhone';
-import StepPod from './components/StepPod';
-import StepPodEnd from './components/StepPodEnd';
-import StepTape from './components/StepTape';
-import StepTapeEnd from './components/StepTapeEnd';
-import { KEY_NEXT } from './constant';
+import BackgroundImage from "./assets/neon-bg.jpg";
+import StepAPT from "./components/StepAPT";
+import StepCD from "./components/StepCD";
+import StepCDEnd from "./components/StepCDEnd";
+import StepCover from "./components/StepCover";
+import StepEnd from "./components/StepEnd";
+import StepOkGoogle from "./components/StepOkGoogle";
+import StepPhone from "./components/StepPhone";
+import StepPod from "./components/StepPod";
+import StepPodEnd from "./components/StepPodEnd";
+import StepPreAPT from "./components/StepPreAPT";
+import StepSlogan from "./components/StepSlogan";
+import StepTape from "./components/StepTape";
+import StepTapeEnd from "./components/StepTapeEnd";
+import { KEY_NEXT } from "./constant";
 
 function App() {
   const [step, setStep] = useState(0);
@@ -62,17 +64,18 @@ function App() {
         backgroundPosition: "center",
       }}>
       {step === 0 && <StepCover handleNext={handleNext} />}
-      {step === 1 && <StepTape handleNext={handleNext} />}
-      {step === 2 && <StepTapeEnd handleNext={handleNext} />}
-      {step === 3 && <StepCD handleNext={handleNext} />}
-      {step === 4 && <StepCDEnd handleNext={handleNext} />}
-      {step === 5 && <StepPod handleNext={handleNext} />}
-      {step === 6 && <StepPodEnd handleNext={handleNext} />}
-      {step === 7 && <StepPhone handleNext={handleNext} />}
-      {step === 8 && <StepOkGoogle handleNext={handleNext} />}
-
-      {step === 9 && <StepAPT handleNext={handleNext} />}
-      {step === 10 && <StepEnd handleNext={handleNext} />}
+      {step === 1 && <StepSlogan handleNext={handleNext} />}
+      {step === 2 && <StepTape handleNext={handleNext} />}
+      {step === 3 && <StepTapeEnd handleNext={handleNext} />}
+      {step === 4 && <StepCD handleNext={handleNext} />}
+      {step === 5 && <StepCDEnd handleNext={handleNext} />}
+      {step === 6 && <StepPod handleNext={handleNext} />}
+      {step === 7 && <StepPodEnd handleNext={handleNext} />}
+      {step === 8 && <StepPhone handleNext={handleNext} />}
+      {step === 9 && <StepOkGoogle handleNext={handleNext} />}
+      {step === 10 && <StepPreAPT handleNext={handleNext} />}
+      {step === 11 && <StepAPT handleNext={handleNext} />}
+      {step === 12 && <StepEnd handleNext={handleNext} />}
     </main>
   );
 }

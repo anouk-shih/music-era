@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 
-import PhoneImage from '../assets/google-pixel.png';
-import PhoneCallMusic from '../assets/phone-call.m4a';
-import RikaRecord from '../assets/Rika_YearEndParty.m4a';
-import { KEY_NEXT } from '../constant';
+import PhoneImage from "../assets/google-pixel.png";
+import PhoneCallMusic from "../assets/phone-call.m4a";
+import RikaRecord from "../assets/Rika_YearEndParty.m4a";
+import { KEY_NEXT } from "../constant";
 
 type StepPhoneProps = {
   handleNext: (e: KeyboardEvent) => void;
@@ -28,10 +28,10 @@ const StepPhone = ({ handleNext }: StepPhoneProps) => {
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (KEY_NEXT.includes(e.key) && step === 0) {
-        setStep(1);
-        handlePlayPhoneCallMusic();
-      }
+      // if (KEY_NEXT.includes(e.key) && step === 0) {
+      //   setStep(1);
+      //   handlePlayPhoneCallMusic();
+      // }
       if (KEY_NEXT.includes(e.key) && step === 1) {
         setStep(2);
         handlePlayRikaRecord();
@@ -42,6 +42,13 @@ const StepPhone = ({ handleNext }: StepPhoneProps) => {
     },
     [step, handleNext]
   );
+
+  useEffect(() => {
+    if (step === 0) {
+      setStep(1);
+      handlePlayPhoneCallMusic();
+    }
+  }, [step]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);

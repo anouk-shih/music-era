@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import RadioImage from '../assets/radio.png';
-import TapeImage from '../assets/tape.png';
+import RadioImage from "../assets/radio.png";
+import TapeImage from "../assets/tape.png";
 
 interface StepTapeProps {
   handleNext: (e: KeyboardEvent) => void;
@@ -23,7 +23,7 @@ const StepTape = ({ handleNext }: StepTapeProps) => {
         className="w-[300px] h-auto object-cover animate__animated animate__fadeInDownBig animate__slow absolute bottom-[15%] right-[10%]"
       />
       <iframe
-        src="https://www.youtube.com/embed/sGUw3c1piSo?si=B8vjkn9CozkRCCJi&start=215&end=255&autoplay=1"
+        src="https://www.youtube.com/embed/sGUw3c1piSo?si=B8vjkn9CozkRCCJi&start=210&end=255&autoplay=1"
         title="YouTube video player"
         allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; autoplay; controls"
         autoFocus

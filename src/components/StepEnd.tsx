@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from "react";
 
-import SongImageA from '../assets/song1.jpg';
-import SongImageB from '../assets/song2.png';
-import SongImageC from '../assets/song3.jpg';
-import SongImageD from '../assets/song4.png';
-import EndImage from '../assets/timeline.jpg';
-import { KEY_NEXT } from '../constant';
+import SongImageA from "../assets/song1.jpg";
+import SongImageB from "../assets/song2.png";
+import SongImageC from "../assets/song3.jpg";
+import SongImageD from "../assets/song4.png";
+import EndImage from "../assets/timeline.jpg";
+import { KEY_NEXT } from "../constant";
 
 const StepEnd = ({ handleNext }: { handleNext: (e: KeyboardEvent) => void }) => {
   const handleKeyDown = useCallback(

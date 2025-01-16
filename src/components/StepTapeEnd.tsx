@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import KimImage from '../assets/kim.jpg';
+import KimImage from "../assets/kim.jpg";
 
 interface StepTapeEndProps {
   handleNext: (e: KeyboardEvent) => void;
@@ -20,7 +20,7 @@ const StepTapeEnd = ({ handleNext }: StepTapeEndProps) => {
         alt="kim"
         className="w-[800px] h-auto object-cover animate__animated animate__fadeInDownBig"
       />
-      <h2 className="w-[800px] p-5 text-center text-white bg-black jersey-15-regular text-8xl absolute top-[55%] left-1/2 transform -translate-x-1/2 animate__animated animate__fadeIn animate__delay-1s">
+      <h2 className="w-[800px] p-5 text-center text-white bg-black jersey-15-regular text-8xl absolute top-[55%] left-1/2 transform -translate-x-1/2 animate__animated animate__fadeIn animate__delay-3s">
         卡帶刪
       </h2>
       <p className="absolute text-4xl text-center text-white micro-5-regular bottom-10">
