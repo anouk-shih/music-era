@@ -51,6 +51,18 @@ const StepSlogan = ({ handleNext }: { handleNext: (e: KeyboardEvent) => void }) 
         {"<-"}
         <span className="ml-20 text-white micro-5-regular">{"->"}</span>
       </p>
+      <iframe
+        width="20"
+        height="20"
+        src="https://www.youtube.com/embed/0hiUuL5uTKc?si=-opWxpoh5Mjfxr7h&start=10&end=25"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        style={{
+          position: "absolute",
+          bottom: "0",
+          right: "0",
+          zIndex: 10,
+        }}></iframe>
     </div>
   );
 };
