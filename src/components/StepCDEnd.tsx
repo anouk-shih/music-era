@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import CDImage from '../assets/cd.webp';
+import FoxImage from '../assets/fox.png';
 import RPGSound from '../assets/rpg-sound.mp3';
 
 interface StepCDEndProps {
   handleNext: (e: KeyboardEvent) => void;
-  FoxImage: string;
 }
 
-const StepCDEnd = ({ handleNext, FoxImage }: StepCDEndProps) => {
+const StepCDEnd = ({ handleNext }: StepCDEndProps) => {
   const [isPlaying, setIsPlaying] = useState(0);
 
   const handlePlaySound = useCallback(() => {
@@ -37,7 +37,7 @@ const StepCDEnd = ({ handleNext, FoxImage }: StepCDEndProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       handleStart();
-    }, 1000);
+    }, 2000);
 
     return () => {
       clearTimeout(timer);

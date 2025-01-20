@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import FoxImage from './assets/fox.png';
 import BackgroundImage from './assets/neon-bg.jpg';
 import StepAPT from './components/StepAPT';
 import StepCD from './components/StepCD';
@@ -69,7 +68,7 @@ function App() {
       {step === 2 && <StepTape handleNext={handleNext} />}
       {step === 3 && <StepTapeEnd handleNext={handleNext} />}
       {step === 4 && <StepCD handleNext={handleNext} />}
-      {step === 5 && <StepCDEnd handleNext={handleNext} FoxImage={FoxImage} />}
+      {step === 5 && <StepCDEnd handleNext={handleNext} />}
       {step === 6 && <StepPod handleNext={handleNext} />}
       {step === 7 && <StepPodEnd handleNext={handleNext} />}
       {step === 8 && <StepPhone handleNext={handleNext} />}
